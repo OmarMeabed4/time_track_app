@@ -1,9 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:time_tracker_app/Screens/GeneralWidgets/MyElevatedButton.dart';
 import 'package:time_tracker_app/Screens/SignInScreen/MySignInButton.dart';
 import 'package:time_tracker_app/Screens/SignInScreen/MySocialElevatedButton.dart';
 
 class SignInScreen extends StatelessWidget {
+
+  Future<void> signInAnnon() async{
+    UserCredential userCredential = await FirebaseAuth.instance.signInAnonymously();
+    print("${userCredential.user.uid}");
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,10 +80,10 @@ class SignInScreen extends StatelessWidget {
               height: 16,
             ),
             MySignInButton(
-              text: "Sign in with google",
+              text: "Sign in with announmisly",
               color: Colors.yellowAccent,
               textColor: Colors.black54,
-              onPressed: () {},
+              onPressed: signInAnnon,
             ),
           ],
         ),
